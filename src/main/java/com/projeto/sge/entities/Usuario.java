@@ -11,13 +11,14 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String name;
+    private String cpf;
     private String email;
-    private Character sexo;
-    private LocalDate dataNascimento;
-    private String telefone;
+    private Character gender;
+    private LocalDate dateNasc;
+    private String phone;
     private String login;
-    private String senha;
+    private String password;
 
     @ManyToMany(mappedBy = "usuario")
     private List<Perfil> perfil = new ArrayList<>();
@@ -28,20 +29,19 @@ public class Usuario {
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    public Usuario(Long id, String nome, String email, Character sexo, LocalDate dataNascimento, String telefone, String login, String senha) {
+    public Usuario(Long id, String name, String cpf, String email, Character gender, LocalDate dateNasc, String phone, String login, String password) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
+        this.cpf = cpf;
         this.email = email;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
-        this.telefone = telefone;
+        this.gender = gender;
+        this.dateNasc = dateNasc;
+        this.phone = phone;
         this.login = login;
-        this.senha = senha;
+        this.password = password;
     }
-
     public Usuario() {
     }
-
     public Long getId() {
         return id;
     }
@@ -50,12 +50,22 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+
+
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getEmail() {
@@ -66,29 +76,30 @@ public class Usuario {
         this.email = email;
     }
 
-    public Character getSexo() {
-        return sexo;
+    public Character getGender() {
+        return gender;
     }
 
-    public void setSexo(Character sexo) {
-        this.sexo = sexo;
+    public void setGender(Character gender) {
+        this.gender = gender;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public LocalDate getdateNasc() {
+        return dateNasc;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setdateNasc(LocalDate dateNasc) {
+        this.dateNasc = dateNasc;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
+
     public String getLogin() {
         return login;
     }
@@ -97,13 +108,14 @@ public class Usuario {
         this.login = login;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
     public List<Perfil> getPerfil() {
         return perfil;
     }

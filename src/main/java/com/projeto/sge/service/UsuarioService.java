@@ -88,20 +88,21 @@ public class UsuarioService {
 
     public void copyEntityUsuario(Usuario entity, UsuarioDTO dto)
     {
-        entity.setNome(dto.getNome());
+        entity.setName(dto.getName());
+        entity.setCpf(dto.getCpf());
         entity.setEmail(dto.getEmail());
-        entity.setSexo(dto.getSexo());
-        entity.setDataNascimento(dto.getDataNascimento());
-        entity.setTelefone(dto.getTelefone());
+        entity.setGender(dto.getGender());
+        entity.setdateNasc(dto.getdateNasc());
+        entity.setPhone(dto.getPhone());
         entity.setLogin(dto.getLogin());
-        entity.setSenha(dto.getSenha());
+        entity.setPassword(dto.getPassword());
     }
     public void copyEntityToEndereco(Endereco entity, EnderecoDTO dto)
     {
-        entity.setBairro(dto.getBairro());
-        entity.setCep(dto.getCep());
-        entity.setEstado(dto.getEstado());
-        entity.setRua(dto.getRua());
-        entity.setNumero(dto.getNumero());
+        entity.setDistrict(dto.getDistrict());
+        entity.setPostalCode(dto.getPostalCode());
+        entity.setState(dto.getState());
+        entity.setStreet(dto.getStreet());
+        entity.setNumber(dto.getNumber());
     }
 }

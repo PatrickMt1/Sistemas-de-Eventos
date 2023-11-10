@@ -71,8 +71,8 @@ public class PedidoService {
     }
     public void copyEntityDto(Pedido entity, PedidoDTO dto)
     {
-        entity.setMomento(dto.getMomento());
-        entity.setDescricao(dto.getDescricao());
+        entity.setMoment(dto.getMoment());
+        entity.setDescription(dto.getDescription());
         entity.setStatus(dto.getStatus());
     }
 }

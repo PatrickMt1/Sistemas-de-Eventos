@@ -8,30 +8,30 @@ import java.time.LocalTime;
 
 public class EventoDTO implements Serializable {
     private Long id;
-    private String nome;
-    private LocalDate data;
-    private LocalTime horario;
-    private String descricao;
-    private String imagem;
+    private String name;
+    private LocalDate date;
+    private LocalTime time;
+    private String price;
+    private String image;
 
     public EventoDTO() {
     }
-    public EventoDTO(Long id, String nome, LocalDate data, LocalTime horario, String descricao, String imagem) {
+    public EventoDTO(Long id, String name, LocalDate date, LocalTime time, String price, String image) {
         this.id = id;
-        this.nome = nome;
-        this.data = data;
-        this.horario = horario;
-        this.descricao = descricao;
-        this.imagem = imagem;
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.price = price;
+        this.image = image;
     }
 
     public EventoDTO(Evento entity) {
         id = entity.getId();
-        nome = entity.getNome();
-        data = entity.getData();
-        horario = entity.getHorario();
-        descricao = entity.getDescricao();
-        imagem = entity.getImagem();
+        name = entity.getName();
+        date = entity.getDate();
+        time = entity.getTime();
+        price = entity.getPrice();
+        image = entity.getImage();
     }
     public Long getId() {
         return id;
@@ -41,44 +41,44 @@ public class EventoDTO implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public LocalTime getHorario() {
-        return horario;
+    public LocalTime getTime() {
+        return time;
     }
 
-    public void setHorario(LocalTime horario) {
-        this.horario = horario;
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getPrice() {
+        return price;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public String getImagem() {
-        return imagem;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setImage(String image) {
+        this.image = image;
     }
 
 

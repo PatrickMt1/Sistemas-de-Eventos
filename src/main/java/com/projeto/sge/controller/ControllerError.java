@@ -1,4 +1,4 @@
-package com.projeto.sge.dto;
+package com.projeto.sge.controller;
 
 import java.time.Instant;
 

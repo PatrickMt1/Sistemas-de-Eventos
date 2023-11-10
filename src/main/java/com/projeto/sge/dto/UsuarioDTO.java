@@ -4,41 +4,45 @@ import java.time.LocalDate;
 
 public class UsuarioDTO {
     private Long id;
-    private String nome;
+    private String name;
+    private String cpf;
     private String email;
-    private Character sexo;
-    private LocalDate dataNascimento;
-    private String telefone;
+    private Character gender;
+    private LocalDate dateNasc;
+    private String phone;
     private String login;
-    private String senha;
+    private String password;
+
+
 
     private EnderecoDTO endereco;
 
-    public UsuarioDTO(Long id, String nome, String email, Character sexo, LocalDate dataNascimento, String telefone, String login, String senha)
+    public UsuarioDTO(Long id, String name, String cpf, String email, Character gender, LocalDate dateNasc, String phone, String login, String password)
     {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
+        this.cpf = cpf;
         this.email = email;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
-        this.telefone = telefone;
+        this.gender = gender;
+        this.dateNasc = dateNasc;
+        this.phone = phone;
         this.login = login;
-        this.senha = senha;
+        this.password = password;
     }
     public UsuarioDTO(Usuario entity) {
         id = entity.getId();
-        nome = entity.getNome();
+        name = entity.getName();
+        cpf = entity.getCpf();
         email = entity.getEmail();
-        sexo = entity.getSexo();
-        dataNascimento = entity.getDataNascimento();
-        telefone = entity.getTelefone();
+        gender = entity.getGender();
+        dateNasc = entity.getdateNasc();
+        phone = entity.getPhone();
         login = entity.getLogin();
-        senha = entity.getSenha();
+        password = entity.getPassword();
         endereco = new EnderecoDTO(entity.getEndereco());
     }
     public UsuarioDTO(){
     }
-
     public Long getId() {
         return id;
     }
@@ -47,12 +51,20 @@ public class UsuarioDTO {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getEmail() {
@@ -63,26 +75,28 @@ public class UsuarioDTO {
         this.email = email;
     }
 
-    public Character getSexo() {
-        return sexo;
+    public Character getGender() {
+        return gender;
     }
 
-    public void setSexo(Character sexo) {
-        this.sexo = sexo;
+    public void setGender(Character gender) {
+        this.gender = gender;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public LocalDate getdateNasc() {
+        return dateNasc;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {this.dataNascimento = dataNascimento;}
-
-    public String getTelefone() {
-        return telefone;
+    public void setdateNasc(LocalDate dateNasc) {
+        this.dateNasc = dateNasc;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getLogin() {
@@ -93,14 +107,13 @@ public class UsuarioDTO {
         this.login = login;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
     public EnderecoDTO getEndereco() {
         return endereco;
     }

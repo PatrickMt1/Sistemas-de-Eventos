@@ -11,14 +11,14 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate momento;
-    private String descricao;
+    private LocalDate moment;
+    private String description;
     private String status;
 
-    public Pedido(Long id, LocalDate momento, String descricao, String status) {
+    public Pedido(Long id, LocalDate moment, String description, String status) {
         this.id = id;
-        this.momento = momento;
-        this.descricao = descricao;
+        this.moment = moment;
+        this.description = description;
         this.status = status;
     }
     @ManyToMany
@@ -43,20 +43,20 @@ public class Pedido {
         this.id = id;
     }
 
-    public LocalDate getMomento() {
-        return momento;
+    public LocalDate getMoment() {
+        return moment;
     }
 
-    public void setMomento(LocalDate dateTime) {
-        this.momento = dateTime;
+    public void setMoment(LocalDate dateTime) {
+        this.moment = dateTime;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {

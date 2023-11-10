@@ -1,6 +1,6 @@
 package com.projeto.sge.advice;
 
-import com.projeto.sge.dto.ControllerError;
+import com.projeto.sge.controller.ControllerError;
 import com.projeto.sge.service.exception.ResourceNotFountExecption;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

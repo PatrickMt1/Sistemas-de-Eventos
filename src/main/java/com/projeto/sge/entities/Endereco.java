@@ -8,22 +8,22 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String bairro;
-    private String cep;
-    private String estado;
-    private String rua;
-    private String numero;
+    private String district;
+    private String postalCode;
+    private String state;
+    private String street;
+    private String number;
 
     public Endereco() {
     }
 
-    public Endereco(Long id, String bairro, String cep, String estado, String rua, String numero) {
+    public Endereco(Long id, String district, String postalCode, String state, String street, String number) {
         this.id = id;
-        this.bairro = bairro;
-        this.cep = cep;
-        this.estado = estado;
-        this.rua = rua;
-        this.numero = numero;
+        this.district = district;
+        this.postalCode = postalCode;
+        this.state = state;
+        this.street = street;
+        this.number = number;
     }
     public Long getId() {
         return id;
@@ -32,44 +32,44 @@ public class Endereco {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getBairro() {
-        return bairro;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
-    public String getCep() {
-        return cep;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getRua() {
-        return rua;
+    public String getStreet() {
+        return street;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getNumber() {
+        return number;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     @Override

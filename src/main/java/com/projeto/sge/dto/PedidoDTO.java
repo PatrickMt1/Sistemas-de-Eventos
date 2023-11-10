@@ -5,23 +5,23 @@ import java.time.LocalDate;
 
 public class PedidoDTO implements Serializable {
     private Long id;
-    private LocalDate momento;
-    private String descricao;
+    private LocalDate moment;
+    private String description;
     private String status;
     public PedidoDTO() {
     }
 
-    public PedidoDTO(Long id, LocalDate momento, String descricao, String status) {
+    public PedidoDTO(Long id, LocalDate moment, String description, String status) {
         this.id = id;
-        this.momento = momento;
-        this.descricao = descricao;
+        this.moment = moment;
+        this.description = description;
         this.status = status;
     }
     public PedidoDTO(Pedido entity)
     {
         id = entity.getId();
-        momento = entity.getMomento();
-        descricao = entity.getDescricao();
+        moment = entity.getMoment();
+        description = entity.getDescription();
         status = entity.getStatus();
     }
 
@@ -33,20 +33,20 @@ public class PedidoDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getMomento() {
-        return momento;
+    public LocalDate getMoment() {
+        return moment;
     }
 
-    public void setMomento(LocalDate momento) {
-        this.momento = momento;
+    public void setMoment(LocalDate moment) {
+        this.moment = moment;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {

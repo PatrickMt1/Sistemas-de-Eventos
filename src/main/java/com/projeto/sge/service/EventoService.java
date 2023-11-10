@@ -80,10 +80,10 @@ public class EventoService
     }
     public void copyEntityDto(Evento entity, EventoDTO dto)
     {
-        entity.setNome(dto.getNome());
-        entity.setData(dto.getData());
-        entity.setHorario(dto.getHorario());
-        entity.setDescricao(dto.getDescricao());
-        entity.setImagem(dto.getImagem());
+        entity.setName(dto.getName());
+        entity.setDate(dto.getDate());
+        entity.setTime(dto.getTime());
+        entity.setPrice(dto.getPrice());
+        entity.setImage(dto.getImage());
     }
 }

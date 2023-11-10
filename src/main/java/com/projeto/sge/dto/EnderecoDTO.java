@@ -3,22 +3,22 @@ import com.projeto.sge.entities.Endereco;
 import java.io.Serializable;
 public class EnderecoDTO implements Serializable {
     private Long id;
-    private String bairro;
-    private String cep;
-    private String estado;
-    private String rua;
-    private String numero;
+    private String district;
+    private String postalCode;
+    private String state;
+    private String street;
+    private String number;
 
     public EnderecoDTO() {
     }
     public EnderecoDTO(Endereco entity)
     {
         id = entity.getId();
-        bairro = entity.getBairro();
-        cep = entity.getCep();
-        estado = entity.getEstado();
-        rua = entity.getRua();
-        numero = entity.getNumero();
+        district = entity.getDistrict();
+        postalCode = entity.getPostalCode();
+        state = entity.getState();
+        street = entity.getStreet();
+        number = entity.getNumber();
 
     }
     public Long getId() {
@@ -28,39 +28,39 @@ public class EnderecoDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getBairro() {
-        return bairro;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
-    public String getCep() {
-        return cep;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void PostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getRua() {return rua;}
+    public String getStreet() {return street;}
 
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public String getNumero() {return numero;}
+    public String getNumber() {return number;}
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setNumber(String number) {
+        this.number = number;
     }
 }
