@@ -5,7 +5,7 @@ import com.projeto.sge.entities.Evento;
 import com.projeto.sge.repositories.EventoRepository;
 import com.projeto.sge.service.exception.DatabaseException;
 import com.projeto.sge.service.exception.ResourceNotFountExecption;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;

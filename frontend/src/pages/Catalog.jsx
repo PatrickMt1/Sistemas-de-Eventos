@@ -1,12 +1,12 @@
-import { Table, Tbody } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import CatalogItem from "../components/CatalogItem";
+import CartButton from "../components/CartButton/CartButton";
+import { CartDrawer } from "../components/CartDrawer";
+import { CatalogItem } from "../components/CatalogItem";
 import { api } from "../services/api";
 
 export default function Catalog() {
   const [events, setEvents] = useState([]);
-
-  //const [searchBar, setSearchBar] = useState("");
 
   async function fetchEvent() {
     const response = await api.get("/eventos");
@@ -17,21 +17,15 @@ export default function Catalog() {
     fetchEvent();
   }, []);
 
-  const ListEvent = events.map((event) => {
-    return (
-      <CatalogItem
-        bg="red"
-        event={event}
-        key={event.id}
-        // eslint-disable-next-line no-undef
-        onDelete={() => onOpenModel(event.id)}
-      />
-    );
-  });
-
   return (
-    <Table>
-      <Tbody>{ListEvent}</Tbody>
-    </Table>
+    <>
+      <CartDrawer />
+      <CartButton />
+      <SimpleGrid columns={3} p="6" spacing={10}>
+        {events.map((event) => (
+          <CatalogItem item={event} key={event.id} />
+        ))}
+      </SimpleGrid>
+    </>
   );
 }

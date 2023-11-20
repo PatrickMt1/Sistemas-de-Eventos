@@ -11,20 +11,15 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import {
-  FiAirplay,
-  FiArrowRight,
-  FiHome,
-  FiMenu,
-  FiUsers,
-} from "react-icons/fi";
+import { FiArrowRight, FiHome, FiMenu, FiUsers } from "react-icons/fi";
 import { Link, Outlet } from "react-router-dom";
 
 const linkItems = [
-  { name: "Página Inicial", icon: FiHome, path: "admin" },
-  { name: "Usuários", icon: FiUsers, path: "list/user" },
-  { name: "Eventos", icon: FiArrowRight, path: "list/event" },
-  { name: "Pagamento", icon: FiAirplay, path: "payment" },
+  { name: "Catálogo", icon: FiHome, path: "catalog" },
+  { name: "Novo usuário", icon: FiArrowRight, path: "registerUser" },
+  { name: "Novo evento", icon: FiArrowRight, path: "registerEvent" },
+  { name: "Lista de usuários", icon: FiUsers, path: "list/user" },
+  { name: "Lista de Eventos", icon: FiMenu, path: "list/event" },
 ];
 
 export default function SimpleSidebar() {
@@ -48,7 +43,6 @@ export default function SimpleSidebar() {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }}>
         <Outlet />

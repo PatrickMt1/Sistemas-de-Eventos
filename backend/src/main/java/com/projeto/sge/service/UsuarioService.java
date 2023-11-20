@@ -1,16 +1,23 @@
 package com.projeto.sge.service;
 import com.projeto.sge.dto.EnderecoDTO;
 import com.projeto.sge.dto.UsuarioDTO;
+import com.projeto.sge.dto.UsuarioEmailDTO;
+import com.projeto.sge.dto.UsuarioInsertDTO;
 import com.projeto.sge.entities.Endereco;
 import com.projeto.sge.entities.Usuario;
 import com.projeto.sge.repositories.EnderecoRepository;
 import com.projeto.sge.repositories.UsuarioRepository;
 import com.projeto.sge.service.exception.DatabaseException;
 import com.projeto.sge.service.exception.ResourceNotFountExecption;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
@@ -18,11 +25,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioRepository repository;
     @Autowired
     private EnderecoRepository enderecoRepository;
+    @Autowired
+    private PasswordEncoder encoder;
     @Transactional(readOnly = true)
     public List<UsuarioDTO> findAll()
     {
@@ -35,6 +44,24 @@ public class UsuarioService {
         }
         return dto;
     }
+    protected Usuario authenticated()
+    {
+        try
+        {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            return repository.findByEmail(username);
+        }
+        catch (Exception e)
+        {
+            throw new UsernameNotFoundException("Usuário inválido");
+        }
+    }
+    @Transactional(readOnly = true)
+    public UsuarioDTO findUser()
+    {
+        Usuario entity = authenticated();
+        return new UsuarioDTO(entity);
+    }
     @Transactional(readOnly = true)
     public UsuarioDTO findById(Long id)
     {
@@ -43,7 +70,7 @@ public class UsuarioService {
         return new UsuarioDTO(entity);
     }
     @Transactional
-    public  UsuarioDTO insert(UsuarioDTO dto)
+    public UsuarioInsertDTO insert(UsuarioInsertDTO dto)
     {
         Endereco endereco = new Endereco();
         copyEntityToEndereco(endereco, dto.getEndereco());
@@ -51,8 +78,9 @@ public class UsuarioService {
         Usuario entity = new Usuario();
         copyEntityUsuario(entity, dto);
         entity.setEndereco(endereco);
+        entity.setPassword(encoder.encode(dto.getPassword()));
         entity = repository.save(entity);
-        return new UsuarioDTO(entity);
+        return new UsuarioInsertDTO(entity);
 
     }
     @Transactional
@@ -92,17 +120,25 @@ public class UsuarioService {
         entity.setCpf(dto.getCpf());
         entity.setEmail(dto.getEmail());
         entity.setGender(dto.getGender());
-        entity.setdateNasc(dto.getdateNasc());
+        entity.setDateNasc(dto.getDateNasc());
         entity.setPhone(dto.getPhone());
-        entity.setLogin(dto.getLogin());
-        entity.setPassword(dto.getPassword());
     }
     public void copyEntityToEndereco(Endereco entity, EnderecoDTO dto)
     {
-        entity.setDistrict(dto.getDistrict());
+       entity.setCity(dto.getCity());
         entity.setPostalCode(dto.getPostalCode());
         entity.setState(dto.getState());
         entity.setStreet(dto.getStreet());
         entity.setNumber(dto.getNumber());
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Usuario usuario = repository.findByEmail(username);
+        if(usuario == null)
+        {
+            throw new UsernameNotFoundException("usuário não encontrado");
+        }
+        return usuario;
     }
 }

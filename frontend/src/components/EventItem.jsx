@@ -8,15 +8,15 @@ export default function EventItem({ event, onUpdate, onDelete }) {
     <Tr>
       <Td>{event.id}</Td>
       <Td>{event.name}</Td>
-      <Td>{event.date}</Td>
+
       <Td>{event.time}</Td>
-      <Td>{event.description}</Td>
+      <Td>{event.price}</Td>
       <Td>
         <ButtonGroup>
           <IconButton
             bg="yellow.400"
             as={Link}
-            to={`/update/evento/${event.id}`}
+            to={`/update/event/${event.id}`}
             size="sm"
             onClick={onUpdate}
             icon={<EditIcon />}

@@ -18,12 +18,11 @@ export default function RegisterUser() {
   const [gender, setGender] = useState();
   const [dateNasc, setdateNasc] = useState();
   const [phone, setPhone] = useState();
-  const [district, setDistrict] = useState();
+  const [city, setCity] = useState();
   const [postalCode, setPostalCode] = useState();
   const [state, setState] = useState();
   const [street, setStreet] = useState();
   const [number, setNumber] = useState();
-  const [login, setLogin] = useState();
   const [password, setPassword] = useState();
 
   const handlePhoneMask = (e) => {
@@ -47,13 +46,12 @@ export default function RegisterUser() {
       dateNasc,
       phone: removeMask(phone.target.value),
       endereco: {
-        district,
+        city,
         postalCode: removeMask(postalCode.target.value),
         state,
         street,
         number,
       },
-      login,
       password,
     };
     toast.promise(api.post("/usuarios", data), {
@@ -74,14 +72,7 @@ export default function RegisterUser() {
             onChange={(e) => setName(e.target.value)}
             required
           />
-          <Input
-            type="email"
-            name="email"
-            label="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+
           <Input
             type="text"
             name="cpf"
@@ -126,10 +117,11 @@ export default function RegisterUser() {
             required
           />
           <Input
-            name="login"
-            label="Login"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
+            type="email"
+            name="email"
+            label="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Input
@@ -140,22 +132,15 @@ export default function RegisterUser() {
             onChange={(e) => setPassword(e.target.value)}
             minlength="6"
           />
-          <Input
-            name="password_confirmation"
-            type="password"
-            label="Confirmação da senha"
-            required
-            minlength="6"
-          />
         </SimpleGrid>
       </Fieldset>
       <Fieldset title="Endereço">
         <SimpleGrid minChildWidth="240px" spacing={["6", "8"]}>
           <Input
-            name="bairro"
-            label="Bairro"
-            value={district}
-            onChange={(e) => setDistrict(e.target.value)}
+            name="cidade"
+            label="Cidade"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
             required
           />
           <Input

@@ -1,6 +1,10 @@
 package com.projeto.sge.dto;
 import com.projeto.sge.entities.Usuario;
+import org.springframework.security.core.GrantedAuthority;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDTO {
     private Long id;
@@ -10,14 +14,12 @@ public class UsuarioDTO {
     private Character gender;
     private LocalDate dateNasc;
     private String phone;
-    private String login;
-    private String password;
-
-
 
     private EnderecoDTO endereco;
 
-    public UsuarioDTO(Long id, String name, String cpf, String email, Character gender, LocalDate dateNasc, String phone, String login, String password)
+    private List <String> perfils = new ArrayList<>();
+
+    public UsuarioDTO(Long id, String name, String cpf, String email, Character gender, LocalDate dateNasc, String phone)
     {
         this.id = id;
         this.name = name;
@@ -26,20 +28,21 @@ public class UsuarioDTO {
         this.gender = gender;
         this.dateNasc = dateNasc;
         this.phone = phone;
-        this.login = login;
-        this.password = password;
     }
     public UsuarioDTO(Usuario entity) {
+
         id = entity.getId();
         name = entity.getName();
         cpf = entity.getCpf();
         email = entity.getEmail();
         gender = entity.getGender();
-        dateNasc = entity.getdateNasc();
+        dateNasc = entity.getDateNasc();
         phone = entity.getPhone();
-        login = entity.getLogin();
-        password = entity.getPassword();
         endereco = new EnderecoDTO(entity.getEndereco());
+        for(GrantedAuthority perfil: entity.getAuthorities())
+        {
+            perfils.add(perfil.getAuthority());
+        }
     }
     public UsuarioDTO(){
     }
@@ -83,11 +86,11 @@ public class UsuarioDTO {
         this.gender = gender;
     }
 
-    public LocalDate getdateNasc() {
+    public LocalDate getDateNasc() {
         return dateNasc;
     }
 
-    public void setdateNasc(LocalDate dateNasc) {
+    public void setDateNasc(LocalDate dateNasc) {
         this.dateNasc = dateNasc;
     }
 
@@ -99,21 +102,7 @@ public class UsuarioDTO {
         this.phone = phone;
     }
 
-    public String getLogin() {
-        return login;
-    }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
     public EnderecoDTO getEndereco() {
         return endereco;
     }

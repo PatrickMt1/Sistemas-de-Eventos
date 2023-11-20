@@ -1,11 +1,10 @@
-import { FormControl, FormLabel, SimpleGrid, Textarea } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import Fieldset from "../components/Fieldset";
 import Form from "../components/Form";
-import UploadFile from "../components/UploadFIle";
 import { Input } from "../components/input";
 import { api } from "../services/api";
 import { cleanInput } from "../ultils/cleanInput";
@@ -52,6 +51,7 @@ export default function UpdateEvent() {
     } else {
       fetchEventById();
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
@@ -82,22 +82,30 @@ export default function UpdateEvent() {
             value={time}
             required
           />
-          <FormControl>
-            <FormLabel color="white">Descição do Evento</FormLabel>
-            <Textarea
-              placeholder=""
-              bgColor="white"
-              focusBorderColor="pink.500"
-              _hover={{
-                bgColor: "gray.100",
-              }}
-              onChange={(e) => setPrice(e.target.value)}
-              value={price}
-              required
-            ></Textarea>
-          </FormControl>
+          <Input
+            label="Preço"
+            placeholder=""
+            bgColor="white"
+            focusBorderColor="pink.500"
+            _hover={{
+              bgColor: "gray.100",
+            }}
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
+            required
+          ></Input>
+          <Input
+            placeholder="URL da imagem"
+            label="Imagem do evento"
+            bgColor="white"
+            focusBorderColor="pink.500"
+            _hover={{
+              bgColor: "gray.100",
+            }}
+            onChange={(e) => setImage(e.target.value)}
+            required
+          ></Input>
         </Fieldset>
-        <UploadFile onChange={(e) => setImage(e.target.value)} />
       </SimpleGrid>
     </Form>
   );

@@ -1,29 +1,21 @@
 package com.projeto.sge.entities;
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
 import java.util.Objects;
 @Entity
 @Table(name="tb_perfil")
-public class Perfil {
+public class Perfil  implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String tipoPerfil;
-
-    @ManyToMany
-    @JoinTable(name = "tb_perfil_usuario",
-    joinColumns = @JoinColumn(name = "perfil_id"),
-    inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    private List<Usuario> usuario = new ArrayList<>();
+    private String authority;
 
     public Perfil(){
     }
-    public Perfil(Long id, String tipoPerfil) {
+    public Perfil(Long id, String authority) {
         this.id = id;
-        this.tipoPerfil = tipoPerfil;
+        this.authority = authority;
     }
 
     public Long getId() {
@@ -34,12 +26,13 @@ public class Perfil {
         this.id = id;
     }
 
-    public String getTipoPerfil() {
-        return tipoPerfil;
+    @Override
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setTipoPerfil(String tipoPerfil) {
-        this.tipoPerfil = tipoPerfil;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     @Override

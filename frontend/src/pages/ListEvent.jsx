@@ -1,5 +1,4 @@
 import {
-  Input,
   SimpleGrid,
   Table,
   TableContainer,
@@ -55,36 +54,24 @@ export default function ListEvent() {
 
   return (
     <TableContainer>
-      <Input
-        w={("500px", "300px")}
-        bgColor="blackAlpha.400"
-        focusBorderColor="green.500"
-        _hover={{
-          bgColor: "gray.300",
-        }}
-        // onChange={({ target }) => setSearchBar(target.value)}
-      />
       <SimpleGrid
         w="100%"
         minChildWidth="240px"
         spacing={["6", "8"]}
       ></SimpleGrid>
       <ModalConfirm
-        b
         title="Deseja remover evento?"
         onConfirm={handleRemoveEvent}
         isOpen={isOpen}
         onClose={onCancelModel}
       />
-
       <Table variant="simple">
         <Thead>
           <Tr>
             <Th>ID</Th>
             <Th>Nome</Th>
-            <Th>Data</Th>
             <Th>Horário</Th>
-            <Th>Descrição</Th>
+            <Th>Preço</Th>
             <Th>Editar\Excluir</Th>
           </Tr>
         </Thead>

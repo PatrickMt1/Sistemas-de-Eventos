@@ -10,7 +10,6 @@ import { api } from "../services/api";
 import { states } from "../ultils/States";
 import { cpfMask, phoneMask, postalCodeMask } from "../ultils/masks";
 import { removeMask } from "../ultils/removeMask";
-import { cleanInput } from "../ultils/cleanInput";
 
 export default function UpdateUser() {
   const [name, setName] = useState();
@@ -19,12 +18,11 @@ export default function UpdateUser() {
   const [gender, setGender] = useState();
   const [dateNasc, setdateNasc] = useState();
   const [phone, setPhone] = useState();
-  const [district, setDistrict] = useState();
+  const [city, setCity] = useState();
   const [postalCode, setPostalCode] = useState();
   const [state, setState] = useState();
   const [street, setStreet] = useState();
   const [number, setNumber] = useState();
-  const [login, setLogin] = useState();
   const [password, setPassword] = useState();
 
   const params = useParams();
@@ -57,20 +55,18 @@ export default function UpdateUser() {
       phone: removeMask(phoneValue),
       ...(password && { password }),
       endereco: {
-        district,
+        city,
         postalCode: removeMask(postalCode),
         state,
         street,
         number,
       },
-      login,
     };
     toast.promise(api.put(`/usuarios/${params.id}`, data), {
       loading: "Carregando...",
       success: <b>Atualizado!</b>,
       error: <b>Nao foi possivel Atualizar.</b>,
     });
-    cleanInput();
   };
 
   async function fetchUserById() {
@@ -81,8 +77,7 @@ export default function UpdateUser() {
     setEmail(data.email);
     setGender(data.gender);
     setdateNasc(data.dateNasc);
-    setLogin(data.login);
-    setDistrict(data.endereco.district);
+    setCity(data.endereco.city);
     setPostalCode(data.endereco.postalCode);
     setState(data.endereco.state);
     setStreet(data.endereco.street);
@@ -106,13 +101,6 @@ export default function UpdateUser() {
             label="Nome completo"
             value={name}
             onChange={(e) => setName(e.target.value)}
-          />
-          <Input
-            type="email"
-            name="email"
-            label="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             type="text"
@@ -157,11 +145,11 @@ export default function UpdateUser() {
             label="Celular"
           />
           <Input
-            name="login"
-            label="Login"
-            disabled
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
+            type="email"
+            name="email"
+            label="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             type="password"
@@ -170,11 +158,6 @@ export default function UpdateUser() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Input
-            name="password_confirmation"
-            type="password"
-            label="Confirmação da senha"
-          />
         </SimpleGrid>
       </Fieldset>
       <Fieldset title="Endereço">
@@ -182,8 +165,8 @@ export default function UpdateUser() {
           <Input
             name="bairro"
             label="Bairro"
-            value={district}
-            onChange={(e) => setDistrict(e.target.value)}
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
           />
           <Input
             name="cep"

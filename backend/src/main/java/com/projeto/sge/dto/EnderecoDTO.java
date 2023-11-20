@@ -3,7 +3,7 @@ import com.projeto.sge.entities.Endereco;
 import java.io.Serializable;
 public class EnderecoDTO implements Serializable {
     private Long id;
-    private String district;
+    private String city;
     private String postalCode;
     private String state;
     private String street;
@@ -14,7 +14,7 @@ public class EnderecoDTO implements Serializable {
     public EnderecoDTO(Endereco entity)
     {
         id = entity.getId();
-        district = entity.getDistrict();
+        city = entity.getCity();
         postalCode = entity.getPostalCode();
         state = entity.getState();
         street = entity.getStreet();
@@ -28,12 +28,12 @@ public class EnderecoDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getDistrict() {
-        return district;
+    public String getCity() {
+        return city;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getPostalCode() {

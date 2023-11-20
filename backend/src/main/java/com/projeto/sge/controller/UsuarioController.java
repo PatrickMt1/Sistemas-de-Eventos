@@ -1,5 +1,7 @@
 package com.projeto.sge.controller;
 import com.projeto.sge.dto.UsuarioDTO;
+import com.projeto.sge.dto.UsuarioEmailDTO;
+import com.projeto.sge.dto.UsuarioInsertDTO;
 import com.projeto.sge.service.UsuarioService;
 import com.projeto.sge.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +14,22 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/usuarios")
 public class UsuarioController {
-
     @Autowired
     private UsuarioService service;
+
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> findAll()
     {
         List<UsuarioDTO> dto = service.findAll();
         return ResponseEntity.ok().body(dto);
     }
+    @GetMapping(value = "/me")
+    public ResponseEntity<UsuarioDTO> findUsuario()
+    {
+        UsuarioDTO dto = service.findUser();
+        return ResponseEntity.ok().body(dto);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<UsuarioDTO> findById(@PathVariable Long id)
     {
@@ -28,7 +37,7 @@ public class UsuarioController {
         return ResponseEntity.ok().body(dto);
     }
     @PostMapping
-    public ResponseEntity<UsuarioDTO> insert(@RequestBody UsuarioDTO dto)
+    public ResponseEntity<UsuarioInsertDTO> insert(@RequestBody UsuarioInsertDTO dto)
     {
         dto = service.insert(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);

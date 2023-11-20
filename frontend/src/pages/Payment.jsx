@@ -1,16 +1,15 @@
+import { Box, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
+import { useCartStore } from "../store";
+import { calculateEventAmount } from "../ultils/calculateEventAmount";
+import { formatPrice } from "../ultils/formatPrice";
 
 function PayemntPayPal() {
   const [paid, setPaid] = useState(false);
   const [loaded, setLoaded] = useState(false);
-
+  const { cart } = useCartStore();
+  const total = calculateEventAmount(cart);
   let paypalRef = useRef();
-
-  const product = {
-    price: 15.0,
-    description: "Show Tal",
-  };
-
   useEffect(() => {
     const script = document.createElement("script");
     const id =
@@ -31,10 +30,9 @@ function PayemntPayPal() {
                 return actions.order.create({
                   purchase_units: [
                     {
-                      description: product.description,
                       amount: {
                         currency_code: "BRL",
-                        value: product.price,
+                        value: total,
                       },
                     },
                   ],
@@ -54,20 +52,24 @@ function PayemntPayPal() {
     }
   });
   return (
-    <div className="PayemntPayPal">
+    <Box m="4" p="4" borderRadius="md">
       {paid ? (
-        <div>
-          <h1>Parabén, Compra realizada com Sucesso</h1>
-        </div>
+        <Text>Parabéns, Compra realizada com Sucesso</Text>
       ) : (
-        <>
-          <h1>
-            {product.description} por R${product.price}
-          </h1>
-          <div ref={(v) => (paypalRef = v)} />
-        </>
+        <Text fontWeight="bold" fontSize="x-large" textAlign="center">
+          Valor total: {formatPrice(total)}
+        </Text>
       )}
-    </div>
+      <Box
+        pt="10"
+        pl="250"
+        color="white"
+        bg="gray"
+        border="1px solid"
+        borderRadius="md"
+        ref={(v) => (paypalRef = v)}
+      ></Box>
+    </Box>
   );
 }
 export default PayemntPayPal;

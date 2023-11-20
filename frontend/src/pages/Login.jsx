@@ -7,35 +7,33 @@ import {
   Heading,
   SimpleGrid,
   Stack,
+  Text,
 } from "@chakra-ui/react";
-import { Input } from "../components/input";
 import { useState } from "react";
-import { api } from "../services/api";
+import { useNavigate } from "react-router-dom";
+import { Input } from "../components/input";
+import * as loginService from "../services/login-service";
 
 export default function Login() {
-  const [login, setLogin] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(login, password);
-    try {
-      await api.post(
-        "/usuarios",
-        { login, password },
-        {
-          headers: { "Content-Type": "application/json" },
+    loginService
+      .findUseRequest(email)
+      .then((response) => {
+        if (response) {
+          navigate("/catalog");
         }
-      );
-    } catch (error) {
-      if (!error?.response) {
-        setError("Erro ao acessar o servidor");
-      } else if (error.response.status == 401) {
-        setError("Usuario ou senha  inválidos");
-      }
-    }
+      })
+      .catch((error) => {
+        setError("Digite um usuário existente", error);
+      });
   };
+
   return (
     <Box>
       <Stack my="20" px="450" w="100" mx="auto" maxW={1480}>
@@ -55,11 +53,11 @@ export default function Login() {
             type="text"
             name="user"
             label="Usuario"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <SimpleGrid w="100%" minChildWidth="240px" spacing={["6", "8"]}>
+          <SimpleGrid w="100%" spacing={["6", "8"]}>
             <Input
               type="password"
               name="password"
@@ -69,12 +67,21 @@ export default function Login() {
             />
           </SimpleGrid>
           <Flex mt="8" justify="flex-end">
-            <HStack spacing="4">
-              <Button as="a" colorScheme="red">
-                Cancelar
-              </Button>
+            <HStack>
+              <Text
+                color="white"
+                fontSize="md"
+                fontWeight="bold"
+                letterSpacing="0.5px"
+                onClick={() => navigate("/registerUser")}
+              >
+                Inscreva-se
+              </Text>
               <Button type="submit" colorScheme="green">
                 Entrar
+              </Button>
+              <Button as="a" colorScheme="red">
+                Cancelar
               </Button>
             </HStack>
           </Flex>

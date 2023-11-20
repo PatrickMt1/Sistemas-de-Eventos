@@ -1,27 +1,30 @@
 package com.projeto.sge.entities;
-import jakarta.persistence.*;
+import javax.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String cpf;
+    @Column(unique = true)
     private String email;
     private Character gender;
     private LocalDate dateNasc;
     private String phone;
-    private String login;
     private String password;
 
-    @ManyToMany(mappedBy = "usuario")
-    private List<Perfil> perfil = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_perfil_usuario",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "perfil_id"))
+    private Set<Perfil> perfil = new HashSet<>();
 
     @ManyToMany(mappedBy = "usuario")
     private List<Pedido> pedido = new ArrayList<>();
@@ -29,7 +32,7 @@ public class Usuario {
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    public Usuario(Long id, String name, String cpf, String email, Character gender, LocalDate dateNasc, String phone, String login, String password) {
+    public Usuario(Long id, String name, String cpf, String email, Character gender, LocalDate dateNasc, String phone, String password) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -37,7 +40,6 @@ public class Usuario {
         this.gender = gender;
         this.dateNasc = dateNasc;
         this.phone = phone;
-        this.login = login;
         this.password = password;
     }
     public Usuario() {
@@ -49,8 +51,6 @@ public class Usuario {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     public String getName() {
         return name;
@@ -84,11 +84,11 @@ public class Usuario {
         this.gender = gender;
     }
 
-    public LocalDate getdateNasc() {
+    public LocalDate getDateNasc() {
         return dateNasc;
     }
 
-    public void setdateNasc(LocalDate dateNasc) {
+    public void setDateNasc(LocalDate dateNasc) {
         this.dateNasc = dateNasc;
     }
 
@@ -100,14 +100,6 @@ public class Usuario {
         this.phone = phone;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -116,7 +108,7 @@ public class Usuario {
         this.password = password;
     }
 
-    public List<Perfil> getPerfil() {
+    public Set<Perfil> getPerfil() {
         return perfil;
     }
 
@@ -129,6 +121,36 @@ public class Usuario {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return perfil;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override

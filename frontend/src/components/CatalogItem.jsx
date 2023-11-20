@@ -1,44 +1,40 @@
 /* eslint-disable react/prop-types */
-import { Box, Button, Img, Td, Tr } from "@chakra-ui/react";
-import { BsFillCartPlusFill } from "react-icons/bs";
+import { Button, Flex, Image, Text } from "@chakra-ui/react";
+import dayjs from "dayjs";
+import { useCartStore } from "../store";
+import { formatPrice } from "../ultils/formatPrice";
 
-export default function CatalogItem({ event }) {
+export function CatalogItem({ item }) {
+  const { addEventToCart } = useCartStore();
+
+  // const data = {
+  //   name,
+  //   date,
+  //   time,
+  //   price,
+  //   image,
+  // };
+  // useEffect(() => {}, []);
+
   return (
-    <Box>
-      <Tr>
-        <Td>
-          <Img
-            w={100}
-            src="https://timelyapp-prod.s3.us-west-2.amazonaws.com/images/54710516/369992627_18227398309243353_443961564958297630_n_ELau.jpg	"
-          />
-        </Td>
-        <Td>{event.name}</Td>
-        <Td>{event.date}</Td>
-        <Td>{event.time}</Td>
-        <Td>
-          {event.price.toLocaleString("pt-br", {
-            style: "currency",
-            currency: "BRL",
-          })}
-        </Td>
+    <Flex>
+      <Image boxSize="120px" objectFit="cover" src={item.image} alt="" />
 
+      <Flex direction="column" flex="1" pl="4" gap="0.5">
+        <Text noOfLines={2} fontWeight="bold">
+          {item.name}
+        </Text>
+        <Text>{dayjs(new Date(item.date)).format("ll")}</Text>
+        <Text color="green.500">{formatPrice(item.price)}</Text>
         <Button
-          w={50}
-          color="green"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          border="none"
-          borderRadius={10}
-          backgroundColor="blackAlpha.600"
-          fontSize={15}
-          type="buttom"
-          className="button-add"
-          cursor="pointer"
+          maxW="40"
+          colorScheme="teal"
+          size="sm"
+          onClick={() => addEventToCart(item)}
         >
-          <BsFillCartPlusFill />
+          Adicionar ao carrinho
         </Button>
-      </Tr>
-    </Box>
+      </Flex>
+    </Flex>
   );
 }

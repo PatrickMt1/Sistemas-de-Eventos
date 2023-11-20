@@ -11,12 +11,12 @@ public class EventoDTO implements Serializable {
     private String name;
     private LocalDate date;
     private LocalTime time;
-    private String price;
+    private Float price;
     private String image;
 
     public EventoDTO() {
     }
-    public EventoDTO(Long id, String name, LocalDate date, LocalTime time, String price, String image) {
+    public EventoDTO(Long id, String name, LocalDate date, LocalTime time, Float price, String image) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -65,11 +65,11 @@ public class EventoDTO implements Serializable {
         this.time = time;
     }
 
-    public String getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

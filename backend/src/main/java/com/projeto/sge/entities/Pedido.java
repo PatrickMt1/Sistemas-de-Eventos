@@ -1,5 +1,5 @@
 package com.projeto.sge.entities;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

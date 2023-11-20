@@ -1,5 +1,5 @@
 package com.projeto.sge.entities;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -8,7 +8,7 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String district;
+    private String city;
     private String postalCode;
     private String state;
     private String street;
@@ -17,9 +17,9 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(Long id, String district, String postalCode, String state, String street, String number) {
+    public Endereco(Long id, String city, String postalCode, String state, String street, String number) {
         this.id = id;
-        this.district = district;
+        this.city = city;
         this.postalCode = postalCode;
         this.state = state;
         this.street = street;
@@ -32,12 +32,12 @@ public class Endereco {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getDistrict() {
-        return district;
+    public String getCity() {
+        return city;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getPostalCode() {
