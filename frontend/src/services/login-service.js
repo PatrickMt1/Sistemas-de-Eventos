@@ -1,12 +1,14 @@
-import { api } from "./api";
+import axios from "axios";
+import { BASE_URL } from "../ultils/system";
+import * as authService from "./auth-service";
 
-export function findUseRequest(email) {
-  const config = {
-    method: "GET",
-    url: "/usuarios/me",
-    params: {
-      email,
-    },
-  };
-  return api(config);
+export function request(config) {
+  const headers = config.withCredentials
+    ? {
+        ...config.headers,
+        Authorization: "Bearer " + authService.getToken(),
+      }
+    : config.headers;
+
+  return axios({ ...config, baseURL: BASE_URL, headers });
 }

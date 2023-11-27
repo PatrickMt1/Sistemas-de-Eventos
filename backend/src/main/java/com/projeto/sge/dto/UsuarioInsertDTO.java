@@ -8,7 +8,6 @@ import java.util.Objects;
 public class UsuarioInsertDTO extends UsuarioDTO
 {
     private String password;
-
     public UsuarioInsertDTO()
     {
         super();

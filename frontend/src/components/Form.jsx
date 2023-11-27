@@ -1,8 +1,10 @@
 import { Button, Flex, HStack, Heading, VStack } from "@chakra-ui/react";
 import { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export default function Form({ title, children, onSubmit }) {
+  const navigate = useNavigate();
   return (
     <>
       <Toaster />
@@ -31,8 +33,12 @@ export default function Form({ title, children, onSubmit }) {
               <Button type="submit" colorScheme="green">
                 Salvar
               </Button>
-              <Button type="reset" colorScheme="red">
-                Limpar
+              <Button
+                type="reset"
+                colorScheme="yellow"
+                onClick={() => navigate("/list/user")}
+              >
+                Voltar
               </Button>
             </HStack>
           </Flex>

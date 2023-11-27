@@ -6,7 +6,6 @@ import {
   FormLabel,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import { cleanInput } from "../ultils/cleanInput";
 
 const InputBase = ({ error, name, label, ...rest }, ref) => {
   return (
@@ -23,7 +22,6 @@ const InputBase = ({ error, name, label, ...rest }, ref) => {
           bgColor: "gray.100",
         }}
         {...rest}
-        cleanInput={cleanInput}
       />
 
       {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}

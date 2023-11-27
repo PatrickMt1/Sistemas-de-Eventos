@@ -26,12 +26,12 @@ function App() {
           <Route path="/list/event" element={<ListEvent />} />
 
           <Route path="/update/event/:id" element={<UpdateEvent />} />
+          <Route path="/update/user/:id" element={<UpdateUser />} />
         </Route>
         <Route element={<Navbar />}>
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/update/user/:id" element={<UpdateUser />} />
         </Route>
       </Routes>
     </ChakraProvider>

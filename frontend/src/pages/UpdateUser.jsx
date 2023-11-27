@@ -75,6 +75,7 @@ export default function UpdateUser() {
     setName(data.name);
     setCpf(data.cpf);
     setEmail(data.email);
+    setPassword(data.password);
     setGender(data.gender);
     setdateNasc(data.dateNasc);
     setCity(data.endereco.city);
@@ -101,6 +102,7 @@ export default function UpdateUser() {
             label="Nome completo"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
           <Input
             type="text"
@@ -143,6 +145,7 @@ export default function UpdateUser() {
             type="text"
             placeholder="(xx) xxxxx-xxxx"
             label="Celular"
+            required
           />
           <Input
             type="email"
@@ -150,6 +153,7 @@ export default function UpdateUser() {
             label="E-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <Input
             type="password"
@@ -157,6 +161,7 @@ export default function UpdateUser() {
             label="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </SimpleGrid>
       </Fieldset>
@@ -167,6 +172,7 @@ export default function UpdateUser() {
             label="Bairro"
             value={city}
             onChange={(e) => setCity(e.target.value)}
+            required
           />
           <Input
             name="cep"
@@ -197,6 +203,7 @@ export default function UpdateUser() {
             placeholder="Ex: Rua Joaquim Eusébio"
             value={street}
             onChange={(e) => setStreet(e.target.value)}
+            required
           />
           <Input
             type="number"
@@ -204,6 +211,7 @@ export default function UpdateUser() {
             label="Número"
             value={number}
             onChange={(e) => setNumber(e.target.value)}
+            required
           />
         </SimpleGrid>
       </Fieldset>

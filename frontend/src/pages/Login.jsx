@@ -12,31 +12,29 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/input";
-import * as loginService from "../services/login-service";
+import * as authService from "../services/auth-service";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    loginService
-      .findUseRequest(email)
+    authService
+      .loginRequest(email, password)
       .then((response) => {
-        if (response) {
-          navigate("/catalog");
-        }
+        authService.saveToken(response.data.access_token);
+        navigate("/catalog");
       })
       .catch((error) => {
-        setError("Digite um usuário existente", error);
+        "Erro ao efetuar login", error;
       });
   };
 
   return (
     <Box>
-      <Stack my="20" px="450" w="100" mx="auto" maxW={1480}>
+      <Stack my="20" px="400" w="100" mx="auto" maxW={1480}>
         <Box
           as="form"
           onSubmit={handleLogin}
@@ -87,7 +85,6 @@ export default function Login() {
           </Flex>
         </Box>
       </Stack>
-      <p>{error}</p>
     </Box>
   );
 }

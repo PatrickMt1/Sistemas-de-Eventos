@@ -16,7 +16,6 @@ import { Link, Outlet } from "react-router-dom";
 
 const linkItems = [
   { name: "Catálogo", icon: FiHome, path: "catalog" },
-  { name: "Novo usuário", icon: FiArrowRight, path: "registerUser" },
   { name: "Novo evento", icon: FiArrowRight, path: "registerEvent" },
   { name: "Lista de usuários", icon: FiUsers, path: "list/user" },
   { name: "Lista de Eventos", icon: FiMenu, path: "list/event" },

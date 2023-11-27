@@ -1,9 +1,8 @@
 import { Box, Button, Flex, Text, useColorModeValue } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
-
-//const navigate = useNavigate();
+import { Outlet, useNavigate } from "react-router-dom";
 
 export default function WithSubnavigation() {
+  const navigate = useNavigate();
   return (
     <Box>
       <Flex
@@ -38,7 +37,7 @@ export default function WithSubnavigation() {
           _hover={{
             bg: "green",
           }}
-          //onClick={() => navigate("/login")}
+          onClick={() => navigate("/login")}
         >
           Sair
         </Button>
