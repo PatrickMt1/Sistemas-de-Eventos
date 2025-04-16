@@ -19,6 +19,7 @@ O sistema é dividido em duas partes principais:
 - Spring Boot
 - Maven
 - JPA / Hibernate (para persistência de dados)
+- Postaman (Enviar requisições HTTP para testar ou interagir com APIs)
 - Banco de dados para teste (H2 Database)
 - Banco de dados relacional (MySQL / PostgreSQL)
 
